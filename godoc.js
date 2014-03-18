@@ -18,6 +18,16 @@ chrome.runtime.onInstalled.addListener(function() {
                         hostEquals: 'code.google.com'
                     },
                 })
+                new chrome.declarativeContent.PageStateMatcher({
+                    pageUrl: {
+                        hostEquals: 'launchpad.net'
+                    },
+                }),
+                new chrome.declarativeContent.PageStateMatcher({
+                    pageUrl: {
+                        hostEquals: 'bitbucket.org'
+                    },
+                }),
             ],
             actions: [new chrome.declarativeContent.ShowPageAction()]
         }]);
