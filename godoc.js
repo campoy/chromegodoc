@@ -28,10 +28,10 @@ chrome.pageAction.onClicked.addListener(function(tab) {
 
     // remove non code part of URLs for github
     if (a.hostname == 'github.com') {
-        var pieces = a.pathname.split('/')
+        var pieces = a.pathname.split('/');
         // empty/username/projectname/pulls|issues|tree
         if (pieces.length > 3 && pieces[3] != 'tree') {
-            a.pathname = pieces.slice(0, 3).join('/')
+            a.pathname = pieces.slice(0, 3).join('/');
         }
     }
 
