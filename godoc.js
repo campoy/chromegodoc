@@ -35,10 +35,16 @@ chrome.runtime.onInstalled.addListener(function() {
 });
 
 chrome.pageAction.onClicked.addListener(function(tab) {
+<<<<<<< HEAD
     var a = document.createElement('a');
     a.href = tab.url;
     chrome.tabs.create({
         url: 'http://godoc.org/' + godocPath(a.hostname, a.pathname),
+=======
+    console.log(tab);
+    chrome.tabs.create({
+        url: 'http://godoc.org/?q=' + encodeURIComponent(tab.url),
+>>>>>>> 7eafbed376877672c4b266d6a830440594c43520
         active: true,
         index: tab.index + 1,
     });
