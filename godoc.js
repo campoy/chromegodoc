@@ -23,8 +23,20 @@ chrome.runtime.onInstalled.addListener(function() {
 });
 
 chrome.pageAction.onClicked.addListener(function(tab) {
+    var a = document.createElement('a');
+    a.href = tab.url;
+
+    // remove non code part of URLs for github
+    if (a.hostname == 'github.com') {
+        var pieces = a.pathname.split('/')
+        // empty/username/projectname/pulls|issues|tree
+        if (pieces.length > 3 && pieces[3] != 'tree') {
+            a.pathname = pieces.slice(0, 3).join('/')
+        }
+    }
+
     chrome.tabs.create({
-        url: 'http://godoc.org/?q=' + encodeURIComponent(tab.url),
+        url: 'http://godoc.org/?q=' + encodeURIComponent(a.href),
         active: true,
         index: tab.index + 1,
     });
